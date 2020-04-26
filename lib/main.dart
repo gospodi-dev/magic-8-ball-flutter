@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() => runApp(
@@ -14,7 +14,7 @@ class BallPage extends StatelessWidget {
       backgroundColor: Colors.blue,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: Text('Спроси меня о чем-то'),
+        title: Text('Спроси меня о чем-либо'),
       ),
       body: Ball(),
     );
@@ -27,10 +27,19 @@ class Ball extends StatefulWidget {
 }
 
 class _BallState extends State<Ball> {
+  int ballNumber = 1;
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Image.asset('images/ball1.png'),
+      child: FlatButton(
+        onPressed: () {
+          setState(() {
+            ballNumber = Random().nextInt(5) + 1;
+          });
+        },
+        child: Image.asset('images/ball$ballNumber.png'),
+      ),
     );
   }
 }
